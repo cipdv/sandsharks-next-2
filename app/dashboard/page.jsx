@@ -1,44 +1,42 @@
-// 'use client'
+'use client'
 
-// import { useEffect, useState } from 'react';
-// import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 import MemberDashboard from "@/components/MemberDashboard"
 import SuperSharkDashboard from "@/components/SuperSharkDashboard"
 import UltraSharkDashboard from "@/components/UltraSharkDashboard"
 import Waiver from "@/components/Waiver"
-import { getAllPosts } from '../actions';
+import Fakeboard from "@/components/Fakeboard"
 
-const dashboard = async () => {
-  // const router = useRouter();
-  // const { data: session, status } = useSession();
-  // // const [posts, setPosts] = useState([]);
+const dashboard = () => {
 
-  // // useEffect(() => {
-  // //     if (status === 'authenticated') {
-  // //         fetch('/api/posts')
-  // //             .then(response => response.json())
-  // //             .then(data => setPosts(data));
-  // //     } else {
-  // //         router.push('/login');
-  // //     }
-  // // }, [status, session]);
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  const [posts, setPosts] = useState([]);
 
-  //   const posts = await getAllPosts()
-  //   console.log('posts', posts)
+  useEffect(() => {
+      if (status === 'authenticated') {
+          fetch('/api/posts')
+              .then(response => response.json())
+              .then(data => setPosts(data));
+      } else {
+          router.push('/login');
+      }
+  }, [status, session]);
 
     return (
         <div>
-          {/* {session?.user?.waiver === false && <Waiver member={session?.user} />}
+          {session?.user?.waiver === false && <Waiver member={session?.user} />}
     
           {session?.user?.waiver === true && (
             <>
               {session?.user?.memberType === 'member' && <MemberDashboard member={session?.user} posts={posts} />}
               {session?.user?.memberType === 'supershark' && <SuperSharkDashboard member={session?.user} posts={posts}/>}
-              {session?.user?.memberType === 'ultrashark' && <UltraSharkDashboard member={session?.user} posts={posts}/>}
+              {session?.user?.memberType === 'ultrashark' && <Fakeboard member={session?.user} posts={posts}/>}
             </>
-          )} */}
+          )}
         </div>
       )
 }

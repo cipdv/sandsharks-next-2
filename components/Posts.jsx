@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Posts = ({posts}) => {
 
@@ -7,7 +6,7 @@ const Posts = ({posts}) => {
         <h1>Posts</h1>
         <p>Posts will go here</p>
         <ul>
-            {posts.map(post => (
+            {posts?.map(post => (
                 <li key={post._id}>
                     <h1>{post.title}</h1>
                     <p>{post.message}</p>

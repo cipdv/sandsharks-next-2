@@ -8,8 +8,10 @@ import { PostFormSchema } from '@/app/lib/postFormSchema';
 import { useFormState, useFormStatus } from "react-dom";
 
 const initialState = {
-    message: ''
+    message: '',
+    title: ''
 }
+
 
 function SubmitButton() {
     const { pending } = useFormStatus();
@@ -46,7 +48,7 @@ const PostForm = () => {
             <h1 className="text-2xl font-bold">Create a new post</h1>
                 <label>Title</label>
                 <input type="text" name='title' />
-                
+                <h1>{state?.title}</h1>
                 <label>Message</label>
                 <textarea className="min-h-[200px] w-full" name='message'/>
                 
@@ -83,9 +85,10 @@ const PostForm = () => {
                         </div>
                     </div>
                 {/* )} */}
-                <p aria-live="polite" className="sr-only" role="status">
+                {/* <p aria-live="polite" className="sr-only" role="status">
                     {state?.message}
-                </p>
+                </p> */}
+                <h1>{state?.message}</h1>
                 <SubmitButton />
             </div>
         </form>

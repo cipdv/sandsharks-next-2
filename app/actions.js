@@ -155,9 +155,13 @@ export const confirmWaiver = async (id) => {
   })
     console.log('result', result)
 
-    if (!result.success) {
-        return { message: "Failed to create new post" };
+    if(!result?.data?.title) {
+      return { title: 'title is required' }
     }
+
+    // if (!result.success) {
+    //     return { message: "Failed to create new post" };
+    // }
 
     const data = result.data;
     
