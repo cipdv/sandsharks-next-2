@@ -13,6 +13,8 @@ import Post from '@/models/postModel';
 import {RegistrationFormSchema} from '@/app/lib/registrationFormSchema'
 import {PostFormSchema} from '@/app/lib/postFormSchema'
 
+
+
 export const registerNewMember = async (formData) => {
     const result = RegistrationFormSchema.safeParse(formData)
 
@@ -137,8 +139,6 @@ export const confirmWaiver = async (id) => {
   
 
   export const createNewPost = async (prevState, formData) => {
-
-    console.log(formData.get('title'))
 
     console.log('form data', formData)
     const result = PostFormSchema.safeParse({
